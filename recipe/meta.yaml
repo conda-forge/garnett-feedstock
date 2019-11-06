@@ -1,6 +1,6 @@
 {% set name = "garnett" %}
-{% set version = "0.5.0" %}
-{% set sha256 = "9be24f8332757c00945849784316b06a2db58f06569a988bfb88c0af6455df1f" %}
+{% set version = "0.6.1" %}
+{% set sha256 = "47d4c59d2042bdb8ded415e8a5782d50777c112196070401d744df494ac3e134" %}
 
 package:
   name: {{ name|lower }}
@@ -10,20 +10,23 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://glotzerlab.engin.umich.edu/Downloads/{{ name }}/{{ name }}-v{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  
+
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv" 
+  script: "{{ PYTHON }} -m pip install . -vv"
+  skip: true  # [py<35]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
+
   host:
     - python
     - pip
     - setuptools
     - cython
     - numpy >=1.11
+
   run:
     - python
     - {{ pin_compatible('numpy') }}
@@ -36,7 +39,7 @@ test:
 about:
   home: https://github.com/glotzerlab/{{ name }}
   license: BSD 3-Clause
-  license_family: BSD 
+  license_family: BSD
   license_file: LICENSE.txt
   summary: 'This is a collection of samples, parsers and writers for formats used in the Glotzer Group at the University of Michigan, Ann Arbor.'
   doc_url: https://{{ name }}.readthedocs.io/
