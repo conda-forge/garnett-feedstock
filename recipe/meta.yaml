@@ -14,7 +14,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install --install-option=\"--no-cython\" . -vv"
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
