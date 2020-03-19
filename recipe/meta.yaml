@@ -1,6 +1,6 @@
 {% set name = "garnett" %}
-{% set version = "0.6.1" %}
-{% set sha256 = "47d4c59d2042bdb8ded415e8a5782d50777c112196070401d744df494ac3e134" %}
+{% set version = "0.7.0" %}
+{% set sha256 = "879343c890805b6376d6bde94614e84070d9835e739dee04b7d3fe622af10e84" %}
 
 package:
   name: {{ name|lower }}
@@ -8,29 +8,25 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://glotzerlab.engin.umich.edu/Downloads/{{ name }}/{{ name }}-v{{ version }}.tar.gz
+  url: https://github.com/glotzerlab/garnett/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
+  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: true  # [py<35]
+  script: "{{ PYTHON }} -m pip install --install-option=\"--no-cython\" . -vv"
 
 requirements:
-  build:
-    - {{ compiler('cxx') }}
-
   host:
-    - python
     - pip
+    - python >=3.5
     - setuptools
-    - cython
-    - numpy
 
   run:
-    - python
-    - {{ pin_compatible('numpy') }}
-    - rowan
+    - deprecation >=2
+    - numpy >=1.14
+    - python >=3.5
+    - rowan >=0.5
 
 test:
   imports:
