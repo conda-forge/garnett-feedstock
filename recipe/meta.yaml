@@ -1,6 +1,6 @@
 {% set name = "garnett" %}
-{% set version = "0.7.0" %}
-{% set sha256 = "879343c890805b6376d6bde94614e84070d9835e739dee04b7d3fe622af10e84" %}
+{% set version = "0.7.1" %}
+{% set sha256 = "cdf53f0ed66c3b70242069e0bc7e715537672d6ae228188ec5fe954ebf6f9e34" %}
 
 package:
   name: {{ name|lower }}
@@ -26,7 +26,8 @@ requirements:
     - deprecation >=2
     - numpy >=1.14
     - python >=3.5
-    - rowan >=0.5
+    - rowan >=1.2
+    - tqdm >=4.35
 
 test:
   imports:
